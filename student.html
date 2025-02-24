@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Career Guidance</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        #results {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        #feedback-area {
+          margin-top: 20px;
+        }
+        #feedback-area textarea{
+          width: 80%;
+          height: 100px;
+          margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Career Guidance</h1>
+
+    <div id="questions-area">
+        <div class="question" id="q1">
+            <label for="strongestSubjects">What are your strongest subjects?</label><br>
+            <input type="text" id="strongestSubjects">
+        </div>
+
+        <div class="question" id="q2">
+            <label for="favoriteActivities">What are your favorite extracurricular activities?</label><br>
+            <input type="text" id="favoriteActivities">
+        </div>
+
+        <div class="question" id="q3">
+            <label for="gpa">What is your current GPA?</label><br>
+            <input type="number" id="gpa" step="0.01">
+        </div>
+
+        <div class="question" id="q4">
+            <label for="workEnvironment">What type of work environment do you prefer? (Indoor/Outdoor, etc.)</label><br>
+            <input type="text" id="workEnvironment">
+        </div>
+
+        <div class="question" id="q5">
+            <label for="longTermGoals">What are your long-term career goals (if any)?</label><br>
+            <input type="text" id="longTermGoals">
+        </div>
+
+        <button id="submitButton">Get Career Suggestions</button>
+    </div>
+
+    <div id="results" style="display: none;">
+        <h2>Career Suggestions:</h2>
+        <p id="careerSuggestions"></p>
+    </div>
+
+    <div id="feedback-area" style="display: none;">
+      <h2>Feedback</h2>
+      <textarea id="feedbackText" placeholder="Please provide feedback on the career suggestions."></textarea><br>
+      <button id="submitFeedback">Submit Feedback</button>
+      <p id="feedbackMessage"></p>
+    </div>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const strongestSubjects = document.getElementById('strongestSubjects').value;
+            const favoriteActivities = document.getElementById('favoriteActivities').value;
+            const gpa = parseFloat(document.getElementById('gpa').value);
+            const workEnvironment = document.getElementById('workEnvironment').value;
+            const longTermGoals = document.getElementById('longTermGoals').value;
+
+            // Placeholder for your AI logic (replace with your actual code)
+            const suggestions = getCareerSuggestions(strongestSubjects, favoriteActivities, gpa, workEnvironment, longTermGoals);
+
+            document.getElementById('careerSuggestions').textContent = suggestions;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('feedback-area').style.display = 'block';
+
+        });
+
+        document.getElementById('submitFeedback').addEventListener('click', function(){
+          const feedback = document.getElementById('feedbackText').value;
+          document.getElementById('feedbackMessage').textContent = "Thank you for your feedback!";
+        });
+
+        // Placeholder function for AI logic (replace with your actual code)
+        function getCareerSuggestions(strongestSubjects, favoriteActivities, gpa, workEnvironment, longTermGoals) {
+            // Example logic (replace with your actual rules/AI)
+            if (gpa > 3.5 && strongestSubjects.includes("Math")) {
+                return "Based on your high GPA and math skills, you might consider careers in engineering or finance.";
+            } else if (favoriteActivities.includes("writing")) {
+                return "Your interest in writing suggests careers in journalism or marketing.";
+            } else {
+                return "Please provide more information for more accurate suggestions.";
+            }
+        }
+    </script>
+</body>
+</html>
